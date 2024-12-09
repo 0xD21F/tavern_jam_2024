@@ -7,6 +7,10 @@ edition = "2021"
 [dependencies]
 bevy = { version = "0.15", features = ["wayland"] }
 rand = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+petgraph = { version = "0.6", features = ["serde-1"] }
+bevy_egui = "0.31"
+
 # Compile low-severity logs out of native builds for performance.
 log = { version = "0.4", features = [
     "max_level_debug",
@@ -35,7 +39,9 @@ dev_native = [
     # Enable embedded asset hot reloading for native dev builds.
     "bevy/embedded_watcher",
 ]
-
+bevy_dialogue = [] # Core runtime (always included)
+bevy_dialogue_ui = ["bevy_dialogue"] # Optional default UI implementation
+bevy_dialogue_editor = ["bevy_dialogue_ui"] # Editor requires UI components
 
 # Idiomatic Bevy code often triggers these lints, and the CI workflow treats them as errors.
 # In some cases they may still signal poor code quality however, so consider commenting out these lines.

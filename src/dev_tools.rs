@@ -9,7 +9,7 @@ use bevy::{
     prelude::*,
 };
 
-use crate::screens::Screen;
+use crate::{dialogue, screens::Screen};
 
 pub(super) fn plugin(app: &mut App) {
     // Log `Screen` state transitions.
@@ -17,6 +17,7 @@ pub(super) fn plugin(app: &mut App) {
 
     // Toggle the debug overlay for UI.
     app.add_plugins(DebugUiPlugin);
+    
     app.add_systems(
         Update,
         toggle_debug_ui.run_if(input_just_pressed(TOGGLE_KEY)),
